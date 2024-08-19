@@ -5,6 +5,11 @@ when:
 variables:
   - &repo "misotolar/makepkg"
   - &desc "Arch Linux build environment"
+  - &auth
+    username:
+      from_secret: DOCKER_USERNAME
+    password:
+      from_secret: DOCKER_PASSWORD
 
 clone:
 
@@ -23,7 +28,7 @@ steps:
     image: mwalbeck/determine-docker-tags
     pull: true
     environment:
-      APP_NAME: "ghcr.io/archlinux/archlinux"
+      APP_NAME: "archlinux"
       VERSION_TYPE: "docker_from"
 
   - name: normalize
@@ -38,10 +43,7 @@ steps:
     settings:
       repo: *repo
       platforms: linux/amd64
-      username:
-          from_secret: DOCKER_USERNAME
-      password:
-          from_secret: DOCKER_PASSWORD
+      <<: *auth
 
   - name: update
     image: misotolar/woodpecker-docker-update
@@ -50,7 +52,4 @@ steps:
       repo: *repo
       desc: *desc
       readme: README.md
-      username:
-          from_secret: DOCKER_USERNAME
-      password:
-          from_secret: DOCKER_PASSWORD
+      <<: *auth

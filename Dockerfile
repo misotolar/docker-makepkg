@@ -1,4 +1,4 @@
-FROM ghcr.io/archlinux/archlinux:base-devel-20240514.0.236051
+FROM archlinux:base-devel-20240811.0.253648
 
 LABEL maintainer="michal@sotolar.com"
 
@@ -18,7 +18,7 @@ RUN set -ex; \
     git config --global init.defaultBranch master; \
     git clone https://aur.archlinux.org/yay.git; \
     env -C yay makepkg -cfisrc --noconfirm; \
-    rm -rf yay
+    sudo rm -rf yay
 
 COPY makepkg.sh /usr/local/bin/makepkg.sh
 
