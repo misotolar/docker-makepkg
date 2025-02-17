@@ -1,4 +1,4 @@
-FROM archlinux:base-devel-20250202.0.304438
+FROM archlinux:base-devel-20250209.0.306557
 
 LABEL maintainer="michal@sotolar.com"
 
@@ -6,8 +6,8 @@ RUN set -ex; \
     useradd -m build; \
     pacman -Syu --noconfirm --needed base-devel git
 
-COPY resources/sudoers /etc/sudoers.d/build
-COPY resources/gpg.conf /home/build/.gnupg/gpg.conf
+COPY resources/config/sudoers /etc/sudoers.d/build
+COPY resources/config/gpg.conf /home/build/.gnupg/gpg.conf
 
 USER build
 WORKDIR /home/build
@@ -20,6 +20,6 @@ RUN set -ex; \
     env -C yay makepkg -cfisrc --noconfirm; \
     sudo rm -rf yay
 
-COPY makepkg.sh /usr/local/bin/makepkg.sh
+COPY resources/makepkg.sh /usr/local/bin/makepkg.sh
 
 ENTRYPOINT ["makepkg.sh"]
