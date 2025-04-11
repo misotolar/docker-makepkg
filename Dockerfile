@@ -1,6 +1,8 @@
-FROM archlinux:base-devel-20250330.0.328921
+FROM archlinux:base-devel-20250406.0.331908
 
-LABEL maintainer="michal@sotolar.com"
+LABEL org.opencontainers.image.url="https://github.com/misotolar/docker-makepkg"
+LABEL org.opencontainers.image.description="Arch Linux build environment"
+LABEL org.opencontainers.image.authors="Michal Sotolar <michal@sotolar.com>"
 
 RUN set -ex; \
     useradd -m build; \

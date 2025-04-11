@@ -24,9 +24,9 @@ if [[ -d /tmp/build/keys/pgp ]]; then
 fi
 
 source PKGBUILD
-if [[ ${#validpgpkeys[@]} > 0 ]]; then
+if [[ ${#validpgpkeys[@]} -gt 0 ]]; then
     echo '==> Fetching PGP keys...'
-    gpg --recv-keys ${validpgpkeys[@]}
+    gpg --recv-keys "${validpgpkeys[@]}"
 fi
 
 yay -Bi /tmp/build
