@@ -1,4 +1,4 @@
-FROM archlinux:base-devel-20250615.0.365905
+FROM archlinux:base-devel-20250706.0.377547
 
 LABEL org.opencontainers.image.url="https://github.com/misotolar/docker-makepkg"
 LABEL org.opencontainers.image.description="Arch Linux build environment"
